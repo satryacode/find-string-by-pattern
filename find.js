@@ -24,8 +24,7 @@ function find(dataSource, patternChar, patternQuery, knownLetter, excludeLetter)
             recommendedWords.push(item);
         }
     }
-
-    if (recommendedWords.length > 0) return recommendedWords;
-    else return dataSource;
+    
+    return recommendedWords;
 
 }
