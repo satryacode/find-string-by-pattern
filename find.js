@@ -13,16 +13,15 @@ function find(dataSource, patternChar, patternQuery, knownLetter, excludeLetter)
     }
 
     //filter data from known letters
-    let recommendedWords = [];
-    for (let item of dataSource) {
-        let sum = 0;
-        for (let i in knownLetter) {
-            if (item.indexOf(knownLetter.charAt(i)) > -1) sum++;
+    let recommendedWords = [], regStr = "", i = knownLetter.length;
+    while (i--){
+        regStr += "(?=.*" + knownLetter[i] + ")";
+    }
 
-            if (sum == knownLetter.length) {
-                recommendedWords.push(item);
-                sum = 0;
-            }
+    let reg = new RegExp(regStr);
+    for(let item of dataSource){
+        if (reg.test(item)) {
+            recommendedWords.push(item);
         }
     }
 
